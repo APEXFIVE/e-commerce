@@ -21,6 +21,7 @@ import Login from "./pages/Forms/Login";
 import Register from "./pages/Forms/Register";
 import SingleAdd from "./pages/Dashboard/SingleAdd";
 import EditAdvert from "./pages/Dashboard/EditAdvert";
+import List from "./pages/home/List";
 
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
     {
       path: "/hero",
       element: <Hero/>,
+    },
+    {
+      path: "/list",
+      element: <List/>,
     },
     {
       path: "/display",

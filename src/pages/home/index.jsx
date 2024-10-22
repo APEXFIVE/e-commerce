@@ -1,13 +1,16 @@
 import React from 'react'
+import Hero from '../about/Hero'
+import Display from '../Display'
 
 const Home = () => {
   return (
     <div>
-      <p>This is the home page</p>
+      <Hero />
+    
       
     </div>
   )
 }
 
-export default Home
+export default Home;
 

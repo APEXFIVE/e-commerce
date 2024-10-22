@@ -1,34 +1,55 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import { apiSignup } from '../services/auth';
+import { useNavigate } from 'react-router-dom';
 
 const UserRegister = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
-      return;
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+  const handleSubmit = async (e) => {
+    e.preventDefault(); //prevent the page from reloading
+    try {
+      //prepare data to be sent to backend
+      setLoading(true)
+      const formData = new FormData(e.target) //take date from the form
+      const firstName = formData.get("firstName")
+      const lastName = formData.get("lastName")
+      const email = formData.get("email")
+      const password = formData.get("password")
+      // const confirmPassword = formData.get("confirmPassword")
+      console.log("firstName", firstName)
+
+      //check if passwords match
+      // if (password !== confirmPassword) {
+      //   return;
+      // }
+      const payload = { firstName: firstName, lastName: lastName, email: email, password: password }
+      const response = await apiSignup(payload);
+      console.log(response.data)
+      navigate("/login")
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
     }
-    // Handle sign up logic here
-    console.log('Form submitted:', formData);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  // e.preventDefault();
+  // if (formData.password !== formData.confirmPassword) {
+  //   alert("Passwords don't match!");
+  //   return;
+  // }
+  // Handle sign up logic here
+  //   console.log('Form submitted:', formData);
+  // };
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     [name]: value
+  //   }));
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-8">
@@ -51,8 +72,8 @@ const UserRegister = () => {
                 name="firstName"
                 type="text"
                 placeholder="John"
-                value={formData.firstName}
-                onChange={handleChange}
+                // value={formData.firstName}
+                // onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
@@ -67,8 +88,8 @@ const UserRegister = () => {
                 name="lastName"
                 type="text"
                 placeholder="Doe"
-                value={formData.lastName}
-                onChange={handleChange}
+                // value={formData.lastName}
+                // onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
@@ -84,13 +105,13 @@ const UserRegister = () => {
               name="email"
               type="email"
               placeholder="name@example.com"
-              value={formData.email}
-              onChange={handleChange}
+              // value={formData.email}
+              // onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
             />
           </div>
-          
+
           <div className="space-y-2">
             <label htmlFor="password" className="block text-sm font-medium text-[#392d48]">
               Password
@@ -99,48 +120,25 @@ const UserRegister = () => {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type="password"
                 placeholder="Create a strong password"
-                value={formData.password}
-                onChange={handleChange}
+                // value={formData.password}
+                // onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
                 minLength={8}
               />
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
+                // onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {/* {showPassword ? <EyeOff size={20} /> : <Eye size={20} />} */}
               </button>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
-              >
-                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
-          </div>
+
 
           <div className="flex items-center">
             <input

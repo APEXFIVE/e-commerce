@@ -50,7 +50,7 @@ function Display() {
             className="w-full h-48 object-cover"
           />
           <div className="p-4">
-            <h2 className="text-xl font-bold text-gray-800">{advert.title}</h2>
+            <h2 className="text-xl font-bold text-[#ff4061]">{advert.title}</h2>
             <p className="text-green-600 font-semibold mt-2">${advert.price}</p>
             <p className="text-sm text-gray-500 mt-1">{advert.category}</p>
             <p className="text-gray-600 mt-2 line-clamp-2">{advert.description}</p>
@@ -89,7 +89,7 @@ function Display() {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Adverts</h1>
+        <h1 className="text-3xl font-bold text-[#392d48]">Adverts</h1>
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setViewMode('grid')}

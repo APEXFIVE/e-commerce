@@ -12,13 +12,13 @@ const handleSubmit = (event) => {
   return (
     <div className="hero">
   <div className="overlay">
-  <div className="text-center text-2xl font-semibold ">
+  <div className="text-center text-2xl font-semibold pt-80 ">
      <h1>Find Your Perfect Wedding Vendor</h1>
      <p>Over 1500+ Wedding Vendors for Your Special Date & Find The Perfect Venue & Save Your Date</p>
      </div>
 
       <div className="form-overlay">
-      <form onSubmit={handleSubmit} className="grid gap-4 grid-cols-1 md:grid-cols-4 m-20 mt-[480px]"> 
+      <form onSubmit={handleSubmit} className="grid gap-4 grid-cols-1 md:grid-cols-4 items-center mt-6 m-20"> 
         <input 
         type="text"
         placeholder="Enter Keyword (item)" 
