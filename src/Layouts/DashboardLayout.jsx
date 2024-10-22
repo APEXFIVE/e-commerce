@@ -1,14 +1,26 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import { useState } from 'react';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+const DashboardLayout = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-const DashbordLayout = () => {
+  const toggleSidebar = () => {
+    setIsCollapsed(prevState => !prevState);
+  };
+
+  
   return (
-    <div>
-      <Sidebar />
+    <div className="dashboard">
+    <Sidebar isCollapsed={isCollapsed} />
+    <div className="main-content">
+      <Header onToggle={toggleSidebar} />
+      {/* Other components or content go here */}
       <Outlet/>
-      <div>Content of the page</div>
     </div>
+  </div>
   );
 };
 
-export default DashbordLayout;
+export default DashboardLayout;
