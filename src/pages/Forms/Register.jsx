@@ -5,43 +5,46 @@ import { Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { SiGooglemybusiness } from "react-icons/si";
 import { MdAttachEmail } from "react-icons/md";
-import { useState } from 'react';
 import { FaCreditCard } from 'react-icons/fa6';
 import { FaTag } from 'react-icons/fa6';
 import { FaLock } from 'react-icons/fa6';
+import { apiSignup } from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
+
 const Register = () => {
-
-  const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    businessname: '',
-    category: '',
-    subscription: '',
-    password: '',
-  });
-
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-
-  
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false)
+ const navigate = useNavigate()
+  const handleSubmit = async (event) => {
+    event.preventDefault();    //prevent the page from reloading
     try {
-      // Call the registerUser API function
-      const result = await registerUser(formData);
-      setSuccess('Registration successful!');
-      setError('');
-      console.log(result);
-    } catch (err) {
-      setError(err.message || 'Registration failed.');
-      setSuccess('');
-    }
+      // prepare data to be sent to backend
+      setLoading(true)
+      const formData = new FormData(event.target) //takes data from the form
+      const firstName = formData.get("firstname")
+      const lastName = formData.get("lastname")
+      const email = formData.get("email")
+      // const businessName = formData.get("businessname")
+      // const category = formData.get("category")
+      // const subscription = formData.get("subscription")
+      const password = formData.get("password")
+      console.log("first name", firstName)
+      //  check if passwords mactch
+      // if (password1 !==password2){
+      // return 
+      // }
+      const payload = { firstName: firstName, lastName: lastName, email: email,  password: password }
+      const response = await apiSignup(payload);
+      console.log(response.data)
+      navigate("/log")
+    } catch (error) {
+      console.log(error)
+
+    } finally {
+      setLoading(false)
+
+     }
   };
   return (
     <div className='w-full min-h-screen flex items-center justify-center loginpage'>
@@ -76,6 +79,7 @@ const Register = () => {
               <label htmlFor="firstname" className='flex text-center text-white mb-1'><FaRegUser />First Name</label>
               <input type="text"
                 id='firstname'
+                name='firstname'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
            rounded-md'
                 placeholder='Enter your First Name'
@@ -83,9 +87,10 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="lastname" className='flex text-center text-white mb-1'><FaRegUser/>Last Name</label>
+              <label htmlFor="lastname" className='flex text-center text-white mb-1'><FaRegUser />Last Name</label>
               <input type="text"
                 id='lastname'
+                name='lastname'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
            rounded-md'
                 placeholder='Enter your Last Name'
@@ -93,8 +98,9 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="username" className='flex items-center text-white mb-1 mt-3'><MdAttachEmail />Email</label>
+              <label htmlFor="email" className='flex items-center text-white mb-1 mt-3'><MdAttachEmail />Email</label>
               <input type="email"
+                name='email'
                 id='email'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
            rounded-md'
@@ -102,28 +108,29 @@ const Register = () => {
                 required />
             </div>
 
-            <div>
+            {/* <div>
               <label htmlFor="businessname" className='flex items-center text-white mb-1 mt-3'>
-                <SiGooglemybusiness  /> Business Name
+                <SiGooglemybusiness /> Business Name
               </label>
               <input
                 type="businessname"
                 id='businessname'
+                name='businessname'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-white rounded-md'
                 placeholder='Enter your Business Name'
-                required
+                // required
               />
-            </div>
+            </div> */}
 
 
 
 
-            <div >
+            {/* <div >
 
               <label htmlFor="category" className="flex items-center text-white mb-1 mt-3">  <FaCreditCard />Subscription</label>
               <select
-                id="subscription" name='subscription' value={formData.subscription} onChange={handleInputChange}
-                required
+                id="subscription" name='subscription' 
+                // required
                 className="w-full h-12 outline-none bg-transparent border-[2px] border-gray-gray-200/40 rounded-md"
               >
                 <option value="">Select your subscription plan</option>
@@ -132,13 +139,13 @@ const Register = () => {
                 <option value="premiumplan">Premium Plan</option>
 
               </select>
-            </div>
-            <div >
+            </div> */}
+            {/* <div >
 
               <label htmlFor="category" className="flex items-center text-white mb-1 mt-3"> <FaTag />Category</label>
               <select
-                 id="category" name='category' value={formData.category} onChange={handleInputChange}
-                required
+                id="category" name='category' 
+                // required
                 className="w-full h-12 outline-none bg-transparent border-[2px] border-gray-gray-200/40 rounded-md"
               >
                 <option value="">Select a category</option>
@@ -149,17 +156,18 @@ const Register = () => {
                 <option value="invitation">Invitation</option>
                 <option value="photography">Photography</option>
               </select>
-            </div>
+            </div> */}
 
             <div>
               <label htmlFor="username" className='flex text-center text-white mb-1 mt-3 '> <FaLock /><span>Password</span></label>
               <input type="password"
+                name='password'
                 id='password'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
            rounded-md'
                 placeholder='Enter your password'
                 required />
-                </div>
+            </div>
           </div>
 
           <div>
@@ -167,15 +175,15 @@ const Register = () => {
               type="Submit"
 
               className="w-full bg-white text-black py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600 font-bold text-xl"
-            >
-              Sign Up
+            >{loading ? "Loading..." : "Sign Up"}
+              
 
             </button>
           </div>
         </form>
-             {/* Display success/error messages */}
-             {success && <p className="text-green-500 mt-4">{success}</p>}
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        
+        {/* {success && <p className="text-green-500 mt-4">{success}</p>}
+        {error && <p className="text-red-500 mt-4">{error}</p>} */}
 
         <div className='w-full h-auto flex items-center justify-center gap-x-1'>
           <p className='text-black text-sm font-medium'>Already have an account?</p>
