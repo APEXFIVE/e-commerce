@@ -3,6 +3,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./app.css"
 import "./dashboard.css"
 import DashboardLayout from "./Layouts/DashboardLayout";
+import Hero from "./pages/about/Hero";
+import Display from "./pages/Display";
+import AdDetail from "./pages/AdDetail";
+import UserLogin from "./pages/UserLogin";
+import UserRegister from "./pages/UserRegister";
 import Overview from "./pages/Dashboard/Overview"; 
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -28,6 +33,27 @@ function App() {
       path: "/about",
       element: <About />,
     },
+    {
+      path: "/hero",
+      element: <Hero/>,
+    },
+    {
+      path: "/display",
+      element: <Display/>,
+    },
+    {
+      path: "/login",
+      element: <UserLogin/>,
+    },
+    {
+      path: "/register",
+      element: <UserRegister/>,
+    },
+    {
+      path: "/detail",
+      element: <AdDetail/>,
+    },
+
     {
       path: "/dashboard",
       element: <DashboardLayout />,

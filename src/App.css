@@ -1,1 +1,73 @@
 
+.hero{
+    background-image: url(./assets/images/hero-1.jpg);
+    height: 100vh;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.overlay {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  
+  }
+
+  .form-overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    /* height: 20vh; */
+  }
+
+  .container {
+    width: 90%;
+    margin: auto;
+}
+
+.view-toggle {
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.item {
+    transition: transform 0.3s ease;
+}
+
+.item:hover {
+    transform: scale(1.05);
+}
+
+.ad-content {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+}
+
+.gallery.list {
+    flex-direction: column;
+}
+
+.gallery.list .item {
+    flex: 1 1 100%;
+}
