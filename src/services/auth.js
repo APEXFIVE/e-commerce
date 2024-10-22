@@ -1,10 +1,10 @@
-import {apiClient} from  "/convig"
+import { apiClient } from "./config"
 
-export const apiSignup = async () => {
-    return apiClient.post("/users/signup",payLoad)
+export const apiSignup = async (payload) => {
+    return apiClient.post("/users/register", payload)
 }
 
-import {apiLogin} from  "/convig"
-export const apiLogin = async () => {
-    return apiClient.post("/users/login",payLoad)
+
+export const apiLogin = async (payload) => {
+    return apiClient.post("/user/login", payload)
 }

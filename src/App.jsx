@@ -21,6 +21,7 @@ import Login from "./pages/Forms/Login";
 import Register from "./pages/Forms/Register";
 import SingleAdd from "./pages/Dashboard/SingleAdd";
 import EditAdvert from "./pages/Dashboard/EditAdvert";
+import Navbar from "./components/Navbar";
 
 
 function App() {
@@ -97,12 +98,16 @@ function App() {
       ],
     },
    {
-    path: "/login",
+    path: "/log",
     element:<Login/>
    },
    {
-    path: "/register",
+    path: "/reg",
     element:<Register/>
+   },
+   {
+    path: "/navbar",
+    element:<Navbar/>
    },
 
 
