@@ -23,6 +23,7 @@ import SingleAdd from "./pages/Dashboard/SingleAdd";
 import EditAdvert from "./pages/Dashboard/EditAdvert";
 import List from "./pages/home/List";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -77,11 +78,11 @@ function App() {
           element: <AddAdverts />,
         },
         {
-          path: "adverts/singleadd",
+          path: "adverts/:id",
           element: <SingleAdd />,
         },
         {
-          path: "/dashboard/adverts/edit/:advertId",
+          path: "edit/:id",
           element: < EditAdvert/>,
         },
         {
@@ -113,6 +114,10 @@ function App() {
    {
     path: "/navbar",
     element:<Navbar/>
+   },
+   {
+    path: "/footer",
+    element:<Footer/>
    },
 
 

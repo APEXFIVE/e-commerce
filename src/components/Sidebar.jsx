@@ -43,7 +43,7 @@ const Sidebar = ({ isCollapsed }) => {
         </li>
         <li><Link to="/dashboard/orders"> <FiList /> <span className={isCollapsed ? 'hidden' : ''}>Orders</span></Link></li>
         <li><Link to="/dashboard/settings"> <IoSettings /> <span className={isCollapsed ? 'hidden' : ''}>Settings</span></Link></li>
-        <li><Link to="/dashboard/logout"> <LuLogOut /> <span className={isCollapsed ? 'hidden' : ''}>Logout</span></Link></li>
+        <li><Link to="/"> <LuLogOut /> <span className={isCollapsed ? 'hidden' : ''}>Logout</span></Link></li>
       </ul>
     </div>
   );
