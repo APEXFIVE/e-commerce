@@ -1,18 +1,16 @@
 import React from 'react'
-import Hero from '../about/Hero'
-import List from './List'
-import Vid from './vid'
-import Plan from './Plan'
+import RootLayout from '../../Layouts/RootLayout'
 
 const Home = () => {
   return (
     <div>
-      <Hero />
+    <RootLayout/>
+      {/* <Hero />
       <List />
-      <Vid />
-      <Plan />
-    
-      
+       */}
+
+{/* <Vid />
+<Plan /> */}
     </div>
   )
 }

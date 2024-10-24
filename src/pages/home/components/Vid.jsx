@@ -1,14 +1,17 @@
 import React from 'react';
-import image from '../images/wedlist2.jpg'
-import image1 from '../images/hero-7.png'
-import image2 from '../images/best.png'
+// import image from '../components/images/wedlist2.jpg'
+// import image1 from '../components/images/hero-7.png'
+// import image2 from '../components/images/best.png'
+import image from "../../../assets/images/wedlist2.jpg"
+import image1 from "../../../assets/images/hero-7.png"
+import image2 from "../../../assets/images/best.png"
 
 const Vid = () => {
     return (
         <section className="video-section">
             <h2 className="video-title">Our Best Featured Wedding</h2>
             <div className="video-container">
-                <video controls autoplay loop muted width="100%" height="480">
+                <video controls autoPlay loop muted width="100%" height="480">
                     <source src="video/video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>

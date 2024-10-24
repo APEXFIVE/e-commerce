@@ -24,8 +24,8 @@ import EditAdvert from "./pages/Dashboard/EditAdvert";
 import List from "./pages/home/List";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Vid from "./pages/home/vid";
-import Plan from "./pages/home/Plan";
+import Vid from "./pages/home/components/Vid";
+import Plan from "./pages/home/components/Plan";
 
 
 function App() {
@@ -60,7 +60,7 @@ function App() {
     },
     {
       path: "/video",
-      element: <Vid/>,
+      element: <Vid/>
     },
     {
       path: "/plan",

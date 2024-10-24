@@ -13,6 +13,9 @@ export const apiGetSingleProduct = async (id) =>{
 export const apiEditproduct = async (id, payload) => {
     return apiClient.patch(`/adverts/${id}`, payload)
 };
+
+
+
 // delete advert
 export const apiDeleteproduct = async (id) => {
     return apiClient.delete(`/adverts/${id}`)

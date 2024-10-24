@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaSquareFacebook } from "react-icons/fa6";
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; 
 import { MdAttachEmail } from "react-icons/md";
 import { FaLock } from 'react-icons/fa6';
 import { apiLogin } from '../../services/auth';
 import axios from 'axios'; // Import Axios
 
 const Login = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
@@ -21,11 +21,11 @@ const Login = () => {
       
       if(response.status === 200) {
         localStorage.setItem("token", response.data.accessToken);
-        navigate('/dashboard'); // Navigate to dashboard after successful login
+        navigate('/dashboard'); 
       }
     } catch (error) {
       console.error("Login failed:", error);
-      // You can add error handling logic here, e.g., show an error message
+    
     }
   };
 
@@ -62,7 +62,7 @@ const Login = () => {
                 type="email"
                 name='email'
                 id='email'
-                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-white rounded-md'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md'
                 placeholder='Enter your email'
                 required 
               />
@@ -74,7 +74,7 @@ const Login = () => {
                 type="password"
                 name='password'
                 id='password'
-                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-white rounded-md'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md'
                 placeholder='Enter your password'
                 required 
               />

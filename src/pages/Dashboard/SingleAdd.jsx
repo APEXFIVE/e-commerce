@@ -1,10 +1,9 @@
 
-
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { apiGetSingleProduct, apiDeleteproduct } from "../../services/product";
 import { FiEdit, FiTrash } from 'react-icons/fi';
+import { toast } from "react-toastify";
 
 const SingleAdvert = () => {
   const params = useParams();
@@ -12,7 +11,7 @@ const SingleAdvert = () => {
   const navigate = useNavigate();
   const advertsid = params.id;
 
-  console.log("Adverts ID from params:", advertsid); 
+  console.log("Adverts ID from params:", advertsid);
 
   const fetchAdvert = async () => {
     if (!advertsid) {
@@ -21,9 +20,10 @@ const SingleAdvert = () => {
     }
 
     try {
-      const response = await apiGetSingleProduct(advertsid); 
+      const response = await apiGetSingleProduct(advertsid);
       const fetchedAdvert = response.data;
       setAdvert(fetchedAdvert);
+
     } catch (error) {
       console.error("Error fetching advert:", error.message);
     }
@@ -36,10 +36,24 @@ const SingleAdvert = () => {
     }
 
     try {
-      await apiDeleteproduct(advertsid);
+       await apiDeleteproduct(advertsid);
+     toast.success(`Advert with ID ${advertsid} deleted successfully.`)
+    //  toast('🦄 Wow so easy!', {
+    //   position: "bottom-left",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "light",
+    //   transition: Bounce,
+    //   });
+      
       console.log(`Advert with ID ${advertsid} deleted successfully.`);
-      navigate(-1); // Navigate back to the adverts list after deletion
+      navigate(-1); 
     } catch (error) {
+      console.log(error)
       console.error("Error deleting advert:", error.message);
     }
   };
@@ -65,17 +79,17 @@ const SingleAdvert = () => {
       <p className="text-gray-600 mb-4">{adverts.description}</p>
       <p className="text-lg font-semibold text-gray-700">Price: ${adverts.price}</p>
       <p className="text-gray-600 mb-4">Category: {adverts.category}</p>
-      
+
       <div className="flex space-x-4">
         <button onClick={() => navigate(-1)} className="px-4 py-2 bg-gray-300 rounded-md">
           Back to Adverts
         </button>
         <button className="px-4 py-2 bg-blue-500 text-white rounded-md flex items-center">
-          <FiEdit className="mr-2" /> 
+          <FiEdit className="mr-2" />
           <Link to={`/dashboard/edit/${adverts.id}`}>Edit Advert</Link>
         </button>
         <button onClick={() => handleDeleteAdvert(adverts.id)} className="px-4 py-2 bg-red-500 text-white rounded-md flex items-center">
-          <FiTrash className="mr-2" /> 
+          <FiTrash className="mr-2" />
           Delete Advert
         </button>
       </div>

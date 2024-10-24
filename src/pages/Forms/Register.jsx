@@ -15,26 +15,29 @@ import { useState } from 'react';
 
 const Register = () => {
   const [loading, setLoading] = useState(false)
- const navigate = useNavigate()
+  const navigate = useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();    //prevent the page from reloading
     try {
       // prepare data to be sent to backend
       setLoading(true)
       const formData = new FormData(event.target) //takes data from the form
-      const firstName = formData.get("firstname")
-      const lastName = formData.get("lastname")
+      const firstName = formData.get("firstName")
+      const lastName = formData.get("lastName")
       const email = formData.get("email")
-      // const businessName = formData.get("businessname")
-      // const category = formData.get("category")
-      // const subscription = formData.get("subscription")
+      const businessName = formData.get("businessName")
+      const category = formData.get("category")
+      const product = formData.get('product')
+      const contactNumber = formData.get("contactNumber")
+      const subscription = formData.get("subscription")
       const password = formData.get("password")
-      console.log("first name", firstName)
+      console.log("firstName", firstName)
       //  check if passwords mactch
       // if (password1 !==password2){
       // return 
       // }
-      const payload = { firstName: firstName, lastName: lastName, email: email,  password: password }
+      const payload = { firstName: firstName, lastName: lastName, email: email, password: password, businessName, product, category, contactNumber, role: 'vendor' }
+      console.log(payload)
       const response = await apiSignup(payload);
       console.log(response.data)
       navigate("/log")
@@ -44,7 +47,7 @@ const Register = () => {
     } finally {
       setLoading(false)
 
-     }
+    }
   };
   return (
     <div className='w-full min-h-screen flex items-center justify-center loginpage'>
@@ -78,9 +81,9 @@ const Register = () => {
             <div>
               <label htmlFor="firstname" className='flex text-center text-black mb-1'><FaRegUser />First Name</label>
               <input type="text"
-                id='firstname'
-                name='firstname'
-                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
+                id='firstName'
+                name='firstName'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
            rounded-md'
                 placeholder='Enter your First Name'
                 required />
@@ -89,9 +92,69 @@ const Register = () => {
             <div>
               <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Last Name</label>
               <input type="text"
-                id='lastname'
-                name='lastname'
-                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
+                id='lastName'
+                name='lastName'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Enter your Last Name'
+                required />
+            </div>
+            <div>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Business Name</label>
+              <input type="text"
+                id='businessName'
+                name='businessName'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Enter your Last Name'
+                required />
+            </div>
+            <div>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Product</label>
+              <input type="text"
+                id='product'
+                name='product'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Enter your Last Name'
+                required />
+            </div>
+            <div className="form-group">
+
+              <label htmlFor="category" className="form-label">Category</label>
+              <select
+                id="category"
+                // defaultValue={advert.category}
+                required
+                className="form-input"
+                name='category'
+              >
+                <option value="">Select a category</option>
+                <option value="catering">Catering</option>
+                <option value="decoration">Decoration</option>
+                <option value="accessories">Accessories</option>
+                <option value="closet">Closet</option>
+                <option value="invitation">Invitation</option>
+                <option value="photography">Photography</option>
+              </select>
+              <label htmlFor="role" className="form-label">Role</label>
+              <select
+                id="role"
+                // defaultValue={advert.category}
+                required
+                className="form-input"
+              >
+                <option value="">Select a Role</option>
+                <option value="vendor">Vendor</option>
+              </select>
+
+            </div>
+            <div>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Contact Number</label>
+              <input type="text"
+                id='contactNumber'
+                name='contactNumber'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
            rounded-md'
                 placeholder='Enter your Last Name'
                 required />
@@ -102,68 +165,20 @@ const Register = () => {
               <input type="email"
                 name='email'
                 id='email'
-                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black
            rounded-md'
                 placeholder='Enter your email'
                 required />
             </div>
 
-            {/* <div>
-              <label htmlFor="businessname" className='flex items-center text-white mb-1 mt-3'>
-                <SiGooglemybusiness /> Business Name
-              </label>
-              <input
-                type="businessname"
-                id='businessname'
-                name='businessname'
-                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-white rounded-md'
-                placeholder='Enter your Business Name'
-                // required
-              />
-            </div> */}
 
-
-
-
-            {/* <div >
-
-              <label htmlFor="category" className="flex items-center text-white mb-1 mt-3">  <FaCreditCard />Subscription</label>
-              <select
-                id="subscription" name='subscription' 
-                // required
-                className="w-full h-12 outline-none bg-transparent border-[2px] border-gray-gray-200/40 rounded-md"
-              >
-                <option value="">Select your subscription plan</option>
-                <option value="basicplan">Basic Plan</option>
-                <option value="standardplan">Standard Plan</option>
-                <option value="premiumplan">Premium Plan</option>
-
-              </select>
-            </div> */}
-            {/* <div >
-
-              <label htmlFor="category" className="flex items-center text-white mb-1 mt-3"> <FaTag />Category</label>
-              <select
-                id="category" name='category' 
-                // required
-                className="w-full h-12 outline-none bg-transparent border-[2px] border-gray-gray-200/40 rounded-md"
-              >
-                <option value="">Select a category</option>
-                <option value="catering">Catering</option>
-                <option value="decoration">Decoration</option>
-                <option value="accessories">Accessories</option>
-                <option value="closet">Closet</option>
-                <option value="invitation">Invitation</option>
-                <option value="photography">Photography</option>
-              </select>
-            </div> */}
 
             <div>
               <label htmlFor="username" className='flex text-center text-black mb-1 mt-3 '> <FaLock /><span>Password</span></label>
               <input type="password"
                 name='password'
                 id='password'
-                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white 
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black
            rounded-md'
                 placeholder='Enter your password'
                 required />
@@ -176,12 +191,12 @@ const Register = () => {
 
               className="w-full bg-pink-600 text-white py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600 font-bold text-xl"
             >{loading ? "Loading..." : "Sign Up"}
-              
+
 
             </button>
           </div>
         </form>
-        
+
         {/* {success && <p className="text-green-500 mt-4">{success}</p>}
         {error && <p className="text-red-500 mt-4">{error}</p>} */}
 

@@ -84,6 +84,7 @@ const AddAdverts = () => {
               placeholder="Enter advert title"
               required
               className="form-input"
+              name="title"
             />
           </div>
 
@@ -94,6 +95,7 @@ const AddAdverts = () => {
               placeholder="Enter advert description"
               required
               className="form-input textarea"
+              name="description"
             />
           </div>
 
@@ -105,6 +107,7 @@ const AddAdverts = () => {
               placeholder="Enter price"
               required
               className="form-input"
+              name="price"
             />
           </div>
 
@@ -112,10 +115,9 @@ const AddAdverts = () => {
             <label htmlFor="category" className="form-label">Category</label>
             <select
               id="category"
-              required
+               onChange={handleCategoryChange}
               className="form-input"
-              value={category} // Bind state to value
-              onChange={handleCategoryChange} // Handle category change
+              name="category"
             >
               <option value="">Select a category</option>
               <option value="catering">Catering</option>
@@ -135,6 +137,7 @@ const AddAdverts = () => {
               onChange={handleImageChange}
               required
               className="form-input"
+              name="category"
             />
           </div>
 
