@@ -3,28 +3,23 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const EditAdvert = () => {
-  const { advertId } = useParams(); 
+  const { advertId } = useParams();
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('');
-  const [image, setImage] = useState(null);
-
-  // Fetch existing advert details on mount
+  
+  const fetchAdvert = async () => {
+    try {
+      const response = await axios.get(`/api/adverts/${advertId}`);
+      const advert = response.data;
+      setTitle(advert.title);
+      setDescription(advert.description);
+      setPrice(advert.price);
+      setCategory(advert.category);
+    } catch (error) {
+      console.error('Error fetching advert details:', error);
+    }
+  };
   useEffect(() => {
-    const fetchAdvert = async () => {
-      try {
-        const response = await axios.get(`/api/adverts/${advertId}`);
-        const advert = response.data;
-        setTitle(advert.title);
-        setDescription(advert.description);
-        setPrice(advert.price);
-        setCategory(advert.category);
-      } catch (error) {
-        console.error('Error fetching advert details:', error);
-      }
-    };
+    
 
     fetchAdvert();
   }, [advertId]);
@@ -34,18 +29,12 @@ const EditAdvert = () => {
 
     // Prepare form data to send
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('price', price);
-    formData.append('category', category);
-    if (image) {
-      formData.append('image', image);
-    }
+  
 
     try {
       await axios.put(`/api/adverts/${advertId}`, formData);
       alert('Advert updated successfully!');
-      navigate(`/dashboard/adverts/${advertId}`); 
+      navigate(`/dashboard/adverts/${advertId}`);
     } catch (error) {
       console.error('Error updating advert:', error);
     }
@@ -67,8 +56,7 @@ const EditAdvert = () => {
             <input
               type="text"
               id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+
               placeholder="Enter advert title"
               required
               className="form-input"
@@ -79,8 +67,7 @@ const EditAdvert = () => {
             <label htmlFor="description" className="form-label">Description</label>
             <textarea
               id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+
               placeholder="Enter advert description"
               required
               className="form-input textarea"
@@ -92,8 +79,7 @@ const EditAdvert = () => {
             <input
               type="number"
               id="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+
               placeholder="Enter price"
               required
               className="form-input"
@@ -104,8 +90,7 @@ const EditAdvert = () => {
             <label htmlFor="category" className="form-label">Category</label>
             <select
               id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+
               required
               className="form-input"
             >

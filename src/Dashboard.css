@@ -305,9 +305,8 @@ body {
 
 .logincard{
   background: rgba(225, 225, 225, 0.09);
-  box-shadow: 8px 8px 40px rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+  background-color: #fff;
   border: 2px solid rgba(225, 225, 225, 0.61);
   z-index: 999;
 }

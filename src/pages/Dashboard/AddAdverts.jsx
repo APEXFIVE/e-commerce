@@ -1,44 +1,86 @@
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import React, { useState } from 'react';
-
-
-const AddAdverts= () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('');
+const AddAdverts = () => {
   const [image, setImage] = useState(null);
+  const [category, setCategory] = useState(""); // State for category
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    console.log('Advert Title:', title);
-    console.log('Description:', description);
-    console.log('Price:', price);
-    console.log('Category:', category);
-    console.log('Image:', image);
+
+    // Ensure category is selected
+    if (!category) {
+      alert("Please select a category.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', e.target.title.value);
+    formData.append('description', e.target.description.value);
+    formData.append('price', e.target.price.value);
+    formData.append('category', category); // Use category from state
+    formData.append('image', image); // Attach image
+
+    // Debug: Log FormData to check category and other values
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      console.error("No token found, redirecting to login");
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/adverts`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Advert created:", response.data);
+      navigate("/dashboard/adverts");
+
+    } catch (error) {
+      console.error("Error creating advert:", error);
+      if (error.response && error.response.status === 401) {
+        console.error("Unauthorized. Redirecting to login.");
+        navigate('/login');
+      }
+    }
   };
 
+  // Handle image change
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
+  };
+
+  // Handle category change
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value); // Update category state
   };
 
   return (
     <div className="form-container">
       <div className="form-box">
         <h2 className="form-header">Create Advert</h2>
-        <p className="form-subtext">
-          Fill out the details to create a new advertisement.
-        </p>
-
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="title" className="form-label">Advert Title</label>
             <input
               type="text"
               id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter advert title"
               required
               className="form-input"
@@ -49,8 +91,6 @@ const AddAdverts= () => {
             <label htmlFor="description" className="form-label">Description</label>
             <textarea
               id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter advert description"
               required
               className="form-input textarea"
@@ -62,8 +102,6 @@ const AddAdverts= () => {
             <input
               type="number"
               id="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price"
               required
               className="form-input"
@@ -74,10 +112,10 @@ const AddAdverts= () => {
             <label htmlFor="category" className="form-label">Category</label>
             <select
               id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
               required
               className="form-input"
+              value={category} // Bind state to value
+              onChange={handleCategoryChange} // Handle category change
             >
               <option value="">Select a category</option>
               <option value="catering">Catering</option>

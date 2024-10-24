@@ -50,17 +50,17 @@ const Register = () => {
     <div className='w-full min-h-screen flex items-center justify-center loginpage'>
       <div className='w-[50%] h-auto py-10 px-12 rounded-xl logincard'>
         <div className='w-full h-auto flex flex-col justify-center items-center'>
-          <h1 className='text-[1.475rem] text-white font-semibold mb-1'>Sign Up</h1>
+          <h1 className='text-[1.475rem] text-black font-semibold mb-1'>Sign Up</h1>
           <p className='text-sm text-gray-400 font-normal mb-8'>Don't have an Account? Create one!</p>
         </div>
 
         <div className='w-full h-auto flex items-center gap-7 '>
           <div className='w-1/2 h-auto flex gap-4 mx-auto'>
-            <button className='w-[200px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-white rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
+            <button className='w-[200px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-black rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
               <FcGoogle size={30} /> Google
             </button>
 
-            <button className='w-[250px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-white rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
+            <button className='w-[250px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-black rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
               <FaSquareFacebook size={30} className=' text-blue-700' /> Facebook
             </button>
 
@@ -76,7 +76,7 @@ const Register = () => {
           <div className='w-full h-auto mb-5 	parent'>
 
             <div>
-              <label htmlFor="firstname" className='flex text-center text-white mb-1'><FaRegUser />First Name</label>
+              <label htmlFor="firstname" className='flex text-center text-black mb-1'><FaRegUser />First Name</label>
               <input type="text"
                 id='firstname'
                 name='firstname'
@@ -87,7 +87,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="lastname" className='flex text-center text-white mb-1'><FaRegUser />Last Name</label>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Last Name</label>
               <input type="text"
                 id='lastname'
                 name='lastname'
@@ -98,7 +98,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="email" className='flex items-center text-white mb-1 mt-3'><MdAttachEmail />Email</label>
+              <label htmlFor="email" className='flex items-center text-black mb-1 mt-3'><MdAttachEmail />Email</label>
               <input type="email"
                 name='email'
                 id='email'
@@ -159,7 +159,7 @@ const Register = () => {
             </div> */}
 
             <div>
-              <label htmlFor="username" className='flex text-center text-white mb-1 mt-3 '> <FaLock /><span>Password</span></label>
+              <label htmlFor="username" className='flex text-center text-black mb-1 mt-3 '> <FaLock /><span>Password</span></label>
               <input type="password"
                 name='password'
                 id='password'
@@ -174,7 +174,7 @@ const Register = () => {
             <button
               type="Submit"
 
-              className="w-full bg-white text-black py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600 font-bold text-xl"
+              className="w-full bg-pink-600 text-white py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600 font-bold text-xl"
             >{loading ? "Loading..." : "Sign Up"}
               
 
@@ -187,7 +187,7 @@ const Register = () => {
 
         <div className='w-full h-auto flex items-center justify-center gap-x-1'>
           <p className='text-black text-sm font-medium'>Already have an account?</p>
-          <Link className='text-white text-sm font-medium hover:underline ease-out duration-500'>Sign In</Link>
+          <Link to={"/log"} className='text-black text-sm font-medium hover:underline ease-out duration-500'>Sign In</Link>
         </div>
 
       </div>

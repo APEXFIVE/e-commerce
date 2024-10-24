@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaSquareFacebook } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
-import { FaRegUser } from "react-icons/fa";
-import { RiLockPasswordLine } from "react-icons/ri";
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { MdAttachEmail } from "react-icons/md";
+import { FaLock } from 'react-icons/fa6';
+import { apiLogin } from '../../services/auth';
 import axios from 'axios'; // Import Axios
 
 const Login = () => {
-  
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault(); 
+    const formData = new FormData(e.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
 
     try {
+      const response = await apiLogin({email, password});
       
-      const response = await axios.post('YOUR_API_URL_HERE', {
-        username,
-        password,
-      });
-
-      console.log('Response:', response.data); 
+      if(response.status === 200) {
+        localStorage.setItem("token", response.data.accessToken);
+        navigate('/dashboard'); // Navigate to dashboard after successful login
+      }
     } catch (error) {
-      console.error('Error:', error.response ? error.response.data : error.message); 
+      console.error("Login failed:", error);
+      // You can add error handling logic here, e.g., show an error message
     }
   };
 
@@ -33,16 +33,16 @@ const Login = () => {
     <div className='w-full min-h-screen flex items-center justify-center loginpage'>
       <div className='w-[32%] h-auto py-10 px-12 rounded-xl logincard'>
         <div className='w-full h-auto'>
-          <h1 className='text-[1.475rem] text-white font-semibold mb-1'>Sign In</h1>
+          <h1 className='text-[1.475rem] text-black font-semibold mb-1'>Sign In</h1>
           <p className='text-sm text-gray-400 font-normal mb-8'>Welcome back You've been missed!</p>
         </div>
         <div className='w-full h-auto flex items-center gap-7'>
           <div className='w-1/2 h-auto flex gap-4'>
-            <button className='w-[200px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-white rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
+            <button className='w-[200px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-black rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
               <FcGoogle size={30} /> Google
             </button>
 
-            <button className='w-[250px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-white rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
+            <button className='w-[250px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-black rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
               <FaSquareFacebook size={30} className=' text-blue-700' /> Facebook
             </button>
           </div>
@@ -56,37 +56,29 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
           <div className='w-full h-auto mb-5'>
-            <label htmlFor="firstname" className='flex text-white mb-1'><FaRegUser />First Name</label>
-            <input
-              type="text"
-              id='firstname'
-              value={firstname} 
-              onChange={(e) => setFirstname(e.target.value)} 
-              className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white rounded-md'
-              placeholder='Enter your First Name'
-              required
-            />
-            <label htmlFor="lastname" className='flex text-white mb-1 mt-3'><FaRegUser />Last Name</label>
-            <input
-              type="text"
-              id='lastname'
-              value={lastname} 
-              onChange={(e) => setLastname(e.target.value)} 
-              className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white rounded-md'
-              placeholder='Enter your Last name'
-              required
-            />
+            <div>
+              <label htmlFor="email" className='flex items-center text-black mb-1 mt-3'><MdAttachEmail />Email</label>
+              <input 
+                type="email"
+                name='email'
+                id='email'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-white rounded-md'
+                placeholder='Enter your email'
+                required 
+              />
+            </div>
 
-            <label htmlFor="password" className='flex text-white mb-1 mt-3 '><RiLockPasswordLine />Password</label>
-            <input
-              type="password"
-              id='password'
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-white rounded-md'
-              placeholder='Enter your password'
-              required
-            />
+            <div>
+              <label htmlFor="password" className='flex text-center text-black mb-1 mt-3 '> <FaLock /><span>Password</span></label>
+              <input 
+                type="password"
+                name='password'
+                id='password'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-white rounded-md'
+                placeholder='Enter your password'
+                required 
+              />
+            </div>
           </div>
 
           <div className='w-full h-auto flex items-center justify-between mb-5'>
@@ -96,17 +88,17 @@ const Login = () => {
                 id='remember'
                 className='w-4 h-4 accent-gray-200/20 border-gray-200 rounded-md text-white '
               />
-              <label htmlFor="remember" className='text-[0.875rem] text-white'>Remember me </label>
+              <label htmlFor="remember" className='text-[0.875rem] text-black'>Remember me </label>
             </div>
             <div className='w-auto h-auto '>
-              <Link className='text-white text-sm font-medium hover:underline ease-out duration-500'>Forgot Password?</Link>
+              <Link className='text-black text-sm font-medium hover:underline ease-out duration-500'>Forgot Password?</Link>
             </div>
           </div>
 
           <div>
             <button
               type="submit"
-              className="w-full bg-white text-black py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600"
+              className="w-full bg-pink-600 text-black py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600"
             >
               Sign in
             </button>
@@ -115,7 +107,7 @@ const Login = () => {
 
         <div className='w-full h-auto flex items-center justify-center gap-x-1'>
           <p className='text-black text-sm font-medium'>Don't have an account?</p>
-          <Link className='text-white text-sm font-medium hover:underline ease-out duration-500'>Create new Account</Link>
+          <Link to={"/reg"} className='text-black text-sm font-medium hover:underline ease-out duration-500'>Create new Account</Link>
         </div>
       </div>
     </div>
