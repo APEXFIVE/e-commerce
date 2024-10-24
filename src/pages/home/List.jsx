@@ -1,10 +1,18 @@
 import React from 'react'
-import image from '../images/catering.jpg'
-import image1 from '../images/invite.jpg'
-import image2 from '../images/decor.jpg'
-import image3 from '../images/access.jpg'
-import image4 from '../images/closet.jpg'
-import image5 from '../images/wedlist2.jpg'
+// import image from "../../assets/images copy/catering.jpg"
+// import image1 from '../../assets/images copy/invite.jpg'
+// import image2 from '../../assets/images copy/decor.jpg'
+// import image3 from '../../images copy/access.jpg'
+// import image4 from '../../images copy/closet.jpg'
+// import image5 from '../../images copy/wedlist2.jpg'
+import image from "../../assets/images/catering.jpg"
+import image1 from "../../assets/images/invite.jpg"
+import image2 from "../../assets/images/decor.jpg"
+import image3 from "../../assets/images/access.jpg"
+import image4 from "../../assets/images/closet.jpg"
+import image5 from "../../assets/images/wedlist2.jpg"
+
+
 
 const List = () => {
 

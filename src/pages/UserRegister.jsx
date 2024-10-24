@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { apiSignup } from '../services/auth';
 import { useNavigate } from 'react-router-dom';
-import image from './images/form.jpg'
+import image from "../assets/images/form.jpg"
 import { Link } from "react-router-dom";
 
 const UserRegister = () => {

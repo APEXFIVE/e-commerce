@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { apiLogin } from '../services/auth';
-import image from './images/form.jpg'
+import image from "../assets/images/form.jpg"
 import { Link } from 'react-router-dom';
 
 const UserLogin = () => {
@@ -21,7 +21,7 @@ const UserLogin = () => {
 
 
   return (
-      <div className="min-h-screen flex items-center justify-center bg-[#392d48] ">
+      <div className=" user-login min-h-screen flex items-center justify-center bg-[#392d48] ">
         <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" />
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 -ml-5">
         <div className="mb-6 text-center">

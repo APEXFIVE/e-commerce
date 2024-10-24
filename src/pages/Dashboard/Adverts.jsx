@@ -36,7 +36,7 @@ const Adverts = () => {
               </p>
               <p className="text-gray-900 text-lg font-bold mt-2">${advert.price}</p>
               <Link
-                to={`/singleadd${advert.id}`}
+                to={`/dashboard/adverts/${advert.id}`}
                 className="inline-block mt-4 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 transition duration-300"
               >
                 View Details
