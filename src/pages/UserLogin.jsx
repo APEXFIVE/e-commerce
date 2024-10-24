@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import { apiLogin } from '../services/auth';
+import image from './images/form.jpg'
+import { Link } from 'react-router-dom';
 
 const UserLogin = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Form submitted:', formData);
+    const formData = new FormData(e.target);
+    const email = formData.get ("email");
+    const password = formData.get ("password");
+    // console.log('Email:email', password:password);
+    const response = await apiLogin({email, password});
+    console.log(response.data);
+    if (response.status===200) {
+       localStorage.setItem("token", response.data.accessToken)
+    }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+      <div className="min-h-screen flex items-center justify-center bg-[#392d48] ">
+        <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" />
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 -ml-5">
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-[#ff4061]">Login</h2>
           <p className="text-sm text-gray-500 mt-1">
@@ -42,8 +41,6 @@ const UserLogin = () => {
               name="email"
               type="email"
               placeholder="name@example.com"
-              value={formData.email}
-              onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
             />
@@ -57,20 +54,11 @@ const UserLogin = () => {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type="password"
                 placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
             </div>
           </div>
 
@@ -101,7 +89,7 @@ const UserLogin = () => {
         <div className="mt-6 text-center text-sm">
           <span className="text-gray-500">Don't have an account?</span>{' '}
           <a href="#" className="font-medium text-[#392d48] hover:text-[#ff4061]">
-            Sign up
+           <Link to= '/register'>Sign up</Link> 
           </a>
         </div>
       </div>
