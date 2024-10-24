@@ -7,7 +7,22 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  animation: backgroundChange 15s infinite;
 }
+@keyframes backgroundChange {
+    0% {
+      background-image: url('./assets/images/hero-1.jpg');
+    }
+    33% {
+      background-image: url('./assets/images/hero-3.png');
+    }
+    66% {
+      background-image: url('./assets/images/hero-6.png');
+    }
+    100% {
+      background-image: url('./assets/images/hero-8.png'); /* Loop back to the first image */
+    }
+  }
 
 .overlay {
     height: 100%;
@@ -73,4 +88,64 @@
 
 .gallery.list .item {
     flex: 1 1 100%;
+}
+
+.video-container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 10px; 
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+iframe, video {
+  width: 100%;
+  height: auto;
+}
+.video-section {
+  position: relative;
+  background-color: #392d480e;
+  padding: 50px 0; 
+  text-align: center;
+  color: #fff;
+}
+
+.video-title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: oblique;
+  z-index: 3;
+  color: #ff4061;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+video {
+  width: 100%;
+  height: auto; 
+  border: none;
+  /* background-color: #000;  */
+}
+
+@media (max-width: 768px) {
+  .video-title {
+    font-size: 2rem;
+  }
+}
+.plan{
+  background-image: url(./assets/images/plan.png);
+  height: 60vh;
+  background-position: center;
+}
+.plan-overlay{
+  background-color: rgba(69, 13, 80, 0.623);
+  height: 54vh;
+}
+
+.covered{
+  font-style: italic;
 }

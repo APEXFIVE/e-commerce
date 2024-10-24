@@ -24,6 +24,8 @@ import EditAdvert from "./pages/Dashboard/EditAdvert";
 import List from "./pages/home/List";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Vid from "./pages/home/vid";
+import Plan from "./pages/home/Plan";
 
 
 function App() {
@@ -55,6 +57,14 @@ function App() {
     {
       path: "/register",
       element: <UserRegister/>,
+    },
+    {
+      path: "/video",
+      element: <Vid/>,
+    },
+    {
+      path: "/plan",
+      element: <Plan/>,
     },
     {
       path: "/detail",

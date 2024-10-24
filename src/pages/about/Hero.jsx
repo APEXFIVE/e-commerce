@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
 const [keyword, setKeyword] = useState("");
 const [category, setCategory] = useState("");
 const [price, setPrice] = useState("");
+const navigate = useNavigate();
+
+const handleSearch =() => {
+  navigate (`/display?title=${keyword}&category=${category}&price=${price}`);
+}
 
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -12,8 +18,8 @@ const handleSubmit = (event) => {
   return (
     <div className="hero">
   <div className="overlay">
-  <div className="text-center text-2xl font-semibold pt-80 ">
-     <h1>Find Your Perfect Wedding Vendor</h1>
+  <div className="text-center text-2xl font-bold pt-80 font-serif">
+     <h1 className="text-4xl">Find Your Perfect Wedding Vendor</h1>
      <p>Over 1500+ Wedding Vendors for Your Special Date & Find The Perfect Venue & Save Your Date</p>
      </div>
 
@@ -46,7 +52,7 @@ const handleSubmit = (event) => {
         />
 
 
-      <button type="submit" className="w-full p-2 bg-[#ff4061] text-white hover:bg-[#392d48] focus:outline-none">Find Vendor</button>
+      <button onClick={handleSearch} className="w-full p-2 bg-[#ff4061] text-white hover:bg-[#392d48] focus:outline-none">Find Vendor</button>
       </form>
       </div>
   </div>

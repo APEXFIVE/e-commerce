@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { apiSignup } from '../services/auth';
 import { useNavigate } from 'react-router-dom';
+import image from './images/form.jpg'
+import { Link } from "react-router-dom";
 
 const UserRegister = () => {
   const [loading, setLoading] = useState(false)
@@ -16,13 +18,8 @@ const UserRegister = () => {
       const lastName = formData.get("lastName")
       const email = formData.get("email")
       const password = formData.get("password")
-      // const confirmPassword = formData.get("confirmPassword")
       console.log("firstName", firstName)
 
-      //check if passwords match
-      // if (password !== confirmPassword) {
-      //   return;
-      // }
       const payload = { firstName: firstName, lastName: lastName, email: email, password: password }
       const response = await apiSignup(payload);
       console.log(response.data)
@@ -34,26 +31,11 @@ const UserRegister = () => {
     }
   };
 
-  // e.preventDefault();
-  // if (formData.password !== formData.confirmPassword) {
-  //   alert("Passwords don't match!");
-  //   return;
-  // }
-  // Handle sign up logic here
-  //   console.log('Form submitted:', formData);
-  // };
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }));
-  // };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-8">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#392d48] py-8">
+       <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" />
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 -ml-5">
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-[#ff4061]">Create an Account</h2>
           <p className="text-sm text-gray-500 mt-1">
@@ -72,8 +54,6 @@ const UserRegister = () => {
                 name="firstName"
                 type="text"
                 placeholder="John"
-                // value={formData.firstName}
-                // onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
@@ -88,8 +68,6 @@ const UserRegister = () => {
                 name="lastName"
                 type="text"
                 placeholder="Doe"
-                // value={formData.lastName}
-                // onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
@@ -105,8 +83,6 @@ const UserRegister = () => {
               name="email"
               type="email"
               placeholder="name@example.com"
-              // value={formData.email}
-              // onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
             />
@@ -122,18 +98,14 @@ const UserRegister = () => {
                 name="password"
                 type="password"
                 placeholder="Create a strong password"
-                // value={formData.password}
-                // onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
                 minLength={8}
               />
               <button
                 type="button"
-                // onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
               >
-                {/* {showPassword ? <EyeOff size={20} /> : <Eye size={20} />} */}
               </button>
             </div>
           </div>
@@ -166,8 +138,9 @@ const UserRegister = () => {
         <div className="mt-6 text-center text-sm">
           <span className="text-gray-500">Already have an account?</span>{' '}
           <a href="#" className="font-medium text-[#392d48] hover:text-[#ff4061]">
-            Sign in
+          <Link to= '/login'>Sign in</Link> 
           </a>
+        
         </div>
       </div>
     </div>
