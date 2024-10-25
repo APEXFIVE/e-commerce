@@ -34,7 +34,7 @@ const UserRegister = () => {
 
   return (
     <div className=" user-reg min-h-screen flex items-center justify-center bg-[#392d48] py-8">
-       {/* <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" /> */}
+      {/* <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" /> */}
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 -ml-5">
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-[#ff4061]">Create an Account</h2>
@@ -138,9 +138,9 @@ const UserRegister = () => {
         <div className="mt-6 text-center text-sm">
           <span className="text-gray-500">Already have an account?</span>{' '}
           <a href="#" className="font-medium text-[#392d48] hover:text-[#ff4061]">
-          <Link to= '/login'>Sign in</Link> 
+            <Link to='/login'>Sign in</Link>
           </a>
-        
+
         </div>
       </div>
     </div>
