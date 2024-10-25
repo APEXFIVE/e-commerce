@@ -33,8 +33,8 @@ const UserRegister = () => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#392d48] py-8">
-       <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" />
+    <div className=" user-reg min-h-screen flex items-center justify-center bg-[#392d48] py-8">
+       {/* <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" /> */}
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 -ml-5">
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-[#ff4061]">Create an Account</h2>
@@ -53,7 +53,7 @@ const UserRegister = () => {
                 id="firstName"
                 name="firstName"
                 type="text"
-                placeholder="John"
+                placeholder="Adwoa"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
@@ -67,7 +67,7 @@ const UserRegister = () => {
                 id="lastName"
                 name="lastName"
                 type="text"
-                placeholder="Doe"
+                placeholder="Mensah"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />

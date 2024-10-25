@@ -90,7 +90,7 @@ const SingleAdvert = () => {
           className="w-full h-60 object-cover rounded-lg mb-4"
         />
       )}
-      <h2 className="text-2xl font-bold text-gray-800 mb-2">{adverts.title}</h2>
+      <h2 className="text-2xl font-bold text-[#ff4061] mb-2">{adverts.title}</h2>
       <p className="text-gray-600 mb-4">{adverts.description}</p>
       <p className="text-lg font-semibold text-gray-700">Price: ${adverts.price}</p>
       <p className="text-gray-600 mb-4">Category: {adverts.category}</p>

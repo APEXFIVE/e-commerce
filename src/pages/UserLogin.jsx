@@ -22,7 +22,7 @@ const UserLogin = () => {
 
   return (
       <div className=" user-login min-h-screen flex items-center justify-center bg-[#392d48] ">
-        <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" />
+        {/* <img className="w-80 h-80 rounded-lg shadow-lg p-8>" src={image} alt="image" /> */}
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 -ml-5">
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-[#ff4061]">Login</h2>

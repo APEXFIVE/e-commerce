@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LayoutGrid, LayoutList } from 'lucide-react';
 import axios from 'axios';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL, 
@@ -72,7 +74,7 @@ function Display() {
       {filteredResults.map((advert) => (
         <Link
           key={advert.id}
-          to={`/advert/${advert.id}`}
+          to={`/detail/${advert.id}`}
           className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
         >
           <img
@@ -98,7 +100,7 @@ function Display() {
       {filteredResults.map((advert) => (
         <Link
           key={advert.id}
-          to={`/advert/${advert.id}`}
+          to={`/detail/${advert.id}`}
           className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
         >
           <div className="flex mt-5">
@@ -145,7 +147,9 @@ function Display() {
   );
 
   return (
-    <div className="flex">
+   <div>
+    <Navbar />
+     <div className="flex">
       <div className="w-1/4 bg-gray-100 p-6 rounded-lg shadow-lg space-y-4">
         <h2 className="text-xl font-bold mb-4 text-gray-800">Filter Adverts</h2>
 
@@ -228,6 +232,8 @@ function Display() {
         )}
       </div>
     </div>
+    <Footer />
+   </div>
   );
 }
 

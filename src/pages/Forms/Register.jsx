@@ -74,123 +74,122 @@ const Register = () => {
           <span className='text-gray-500'>OR</span>
           <span className='w-1/3 h-[1px] bg-gray-300'></span>
         </div>
-
         <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-5 mb-5"> {/* Grid with two columns */}
-  <div>
-    <label htmlFor="firstName" className="flex items-center text-black mb-1"><FaRegUser />First Name</label>
-    <input 
-      type="text"
-      id="firstName"
-      name="firstName"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      placeholder="Enter your First Name"
-      required
-    />
-  </div>
-  
-  <div>
-    <label htmlFor="lastName" className="flex items-center text-black mb-1"><FaRegUser />Last Name</label>
-    <input 
-      type="text"
-      id="lastName"
-      name="lastName"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      placeholder="Enter your Last Name"
-      required
-    />
-  </div>
+          <div className='w-full h-auto mb-5 	parent'>
 
-  <div>
-    <label htmlFor="businessName" className="flex items-center text-black mb-1"><SiGooglemybusiness />Business Name</label>
-    <input 
-      type="text"
-      id="businessName"
-      name="businessName"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      placeholder="Enter your Business Name"
-      required
-    />
-  </div>
+            <div>
+              <label htmlFor="firstname" className='flex text-center text-black mb-1'><FaRegUser />First Name</label>
+              <input type="text"
+                id='firstName'
+                name='firstName'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Enter your First Name'
+                required />
+            </div>
 
-  <div>
-    <label htmlFor="product" className="flex items-center text-black mb-1"><FaTag />Product</label>
-    <input 
-      type="text"
-      id="product"
-      name="product"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      placeholder="Enter your Product"
-      required
-    />
-  </div>
+            <div>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Last Name</label>
+              <input type="text"
+                id='lastName'
+                name='lastName'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Enter your Last Name'
+                required />
+            </div>
+            <div>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Business Name</label>
+              <input type="text"
+                id='businessName'
+                name='businessName'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Your Business Name'
+                required />
+            </div>
+            <div>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Product</label>
+              <input type="text"
+                id='product'
+                name='product'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Product Name'
+                required />
+            </div>
+            <div className="form-group">
 
-  <div>
-    <label htmlFor="category" className="flex items-center text-black mb-1"><FaTag />Category</label>
-    <select
-      id="category"
-      name="category"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      required
-    >
-      <option value="">Select a category</option>
-      <option value="catering">Catering</option>
-      <option value="decoration">Decoration</option>
-      <option value="accessories">Accessories</option>
-      <option value="closet">Closet</option>
-      <option value="invitation">Invitation</option>
-      <option value="photography">Photography</option>
-    </select>
-  </div>
+              <label htmlFor="category" className="form-label">Category</label>
+              <select
+                id="category"
+                // defaultValue={advert.category}
+                required
+                className="form-input"
+                name='category'
+              >
+                <option value="">Select a category</option>
+                <option value="catering">Catering</option>
+                <option value="decoration">Decoration</option>
+                <option value="accessories">Accessories</option>
+                <option value="closet">Closet</option>
+                <option value="invitation">Invitation</option>
+                <option value="photography">Photography</option>
+              </select>
+              <label htmlFor="role" className="form-label">Role</label>
+              <select
+                id="role"
+                // defaultValue={advert.category}
+                required
+                className="form-input"
+              >
+                <option value="">Select a Role</option>
+                <option value="vendor">Vendor</option>
+              </select>
 
-  <div>
-    <label htmlFor="contactNumber" className="flex items-center text-black mb-1"><FaCreditCard />Contact Number</label>
-    <input 
-      type="text"
-      id="contactNumber"
-      name="contactNumber"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      placeholder="Enter your Contact Number"
-      required
-    />
-  </div>
+            </div>
+            <div>
+              <label htmlFor="lastname" className='flex text-center text-black mb-1'><FaRegUser />Contact Number</label>
+              <input type="text"
+                id='contactNumber'
+                name='contactNumber'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
+           rounded-md'
+                placeholder='Your Contact'
+                required />
+            </div>
 
-  <div className="col-span-2"> {/* Make email and password full width */}
-    <label htmlFor="email" className="flex items-center text-black mb-1"><MdAttachEmail />Email</label>
-    <input 
-      type="email"
-      id="email"
-      name="email"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      placeholder="Enter your email"
-      required
-    />
-  </div>
-
-  <div className="col-span-2">
-    <label htmlFor="password" className="flex items-center text-black mb-1"><FaLock />Password</label>
-    <input 
-      type="password"
-      id="password"
-      name="password"
-      className="w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-200/40 text-black rounded-md"
-      placeholder="Enter your password"
-      required
-    />
-  </div>
-</div>
+            <div>
+              <label htmlFor="email" className='flex items-center text-black mb-1 mt-3'><MdAttachEmail />Email</label>
+              <input type="email"
+                name='email'
+                id='email'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black
+           rounded-md'
+                placeholder='Enter your email'
+                required />
+            </div>
 
 
-          <div className='mt-6'>
-            <button type="submit" className='w-full bg-pink-600 text-white py-3 rounded hover:bg-pink-700 transition font-semibold'>
-              {loading ? "Loading..." : "Sign Up"}
-            </button>
+
+            <div>
+              <label htmlFor="username" className='flex text-center text-black mb-1 mt-3 '> <FaLock /><span>Password</span></label>
+              <input type="password"
+                name='password'
+                id='password'
+                className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black
+           rounded-md'
+                placeholder='Enter your password'
+                required />
+            </div>
           </div>
-        </form>
 
-        <div className='text-center mt-4'>
-          <p className='text-gray-700'>Already have an account? <Link to="/log" className='text-pink-600 hover:underline'>Sign In</Link></p>
-        </div>
+          <div>
+            <button
+              type="Submit"
+
+              className="w-full bg-pink-600 text-white py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600 font-bold text-xl"
+            >{loading ? "Loading..." : "Sign Up"}
       </div>
     </div>
   );

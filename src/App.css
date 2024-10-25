@@ -152,4 +152,28 @@ video {
 
 .user-login{
   background-image: url(./assets/images/form.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.user-reg{
+  background-image: url(./assets/images/form.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.vendor-log{
+  background-image: url(./assets/images/form.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.loginpage{
+  background-image: url(./assets/images/form.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }

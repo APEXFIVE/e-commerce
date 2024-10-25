@@ -51,14 +51,14 @@ const Navbar = () => {
           </button>
           {showPagesDropdown && (
             <ul className="absolute bg-white shadow-lg p-2 space-y-2 mt-2">
-              <li><Link to="/about" className="hover:text-red-500">About Us</Link></li>
-              <li><Link to="/services" className="hover:text-red-500">Services</Link></li>
-              <li><Link to="/gallery" className="hover:text-red-500">Gallery</Link></li>
+              <li><Link to="/plan" className="hover:text-red-500">Plan Your Wedding</Link></li>
+              <li><Link to="/video" className="hover:text-red-500">Feature</Link></li>
+              <li><Link to="/list" className="hover:text-red-500">Best Sellers</Link></li>
             </ul>
           )}
         </li>
 
-        <li><Link className="hover:text-red-500" to="/listing">LISTING</Link></li>
+        <li><Link className="hover:text-red-500" to="/display">LISTING</Link></li>
 
         {/* VENDOR Dropdown */}
         <li className="relative">
