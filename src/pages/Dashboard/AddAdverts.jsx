@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 const AddAdverts = () => {
   const [image, setImage] = useState(null);
@@ -21,13 +22,8 @@ const AddAdverts = () => {
     formData.append('title', e.target.title.value);
     formData.append('description', e.target.description.value);
     formData.append('price', e.target.price.value);
-    formData.append('category', category); // Use category from state
-    formData.append('image', image); // Attach image
-
-    // Debug: Log FormData to check category and other values
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+    formData.append('category', category);
+    formData.append('image', image); 
 
     const token = localStorage.getItem('token');
 
@@ -49,11 +45,25 @@ const AddAdverts = () => {
         }
       );
 
-      console.log("Advert created:", response.data);
+      // Show success SweetAlert if the advert is posted successfully
+      Swal.fire({
+        icon: 'success',
+        title: 'Advert Created!',
+        text: 'Your advert has been posted successfully.',
+      });
+
       navigate("/dashboard/adverts");
 
     } catch (error) {
       console.error("Error creating advert:", error);
+
+      // Show error SweetAlert in case of failure
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'There was an issue posting your advert. Please try again.',
+      });
+
       if (error.response && error.response.status === 401) {
         console.error("Unauthorized. Redirecting to login.");
         navigate('/login');
@@ -61,14 +71,14 @@ const AddAdverts = () => {
     }
   };
 
-  // Handle image change
+
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
-  // Handle category change
+ 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value); // Update category state
+    setCategory(e.target.value); 
   };
 
   return (
@@ -115,7 +125,7 @@ const AddAdverts = () => {
             <label htmlFor="category" className="form-label">Category</label>
             <select
               id="category"
-               onChange={handleCategoryChange}
+              onChange={handleCategoryChange}
               className="form-input"
               name="category"
             >

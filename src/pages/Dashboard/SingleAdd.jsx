@@ -1,10 +1,11 @@
-
+import Swal from 'sweetalert2';
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { apiGetSingleProduct, apiDeleteproduct } from "../../services/product";
+// import { apiGetSingleProduct, apiDeleteproduct } from "../../services/product";
 import { FiEdit, FiTrash } from 'react-icons/fi';
 import { toast } from "react-toastify";
-
+import { apiGetSingleProduct } from '../../services/product';
+import { apiDeleteProduct } from '../../services/product';
 const SingleAdvert = () => {
   const params = useParams();
   const [adverts, setAdvert] = useState(null);
@@ -35,27 +36,41 @@ const SingleAdvert = () => {
       return;
     }
 
-    try {
-       await apiDeleteproduct(advertsid);
-     toast.success(`Advert with ID ${advertsid} deleted successfully.`)
-    //  toast('🦄 Wow so easy!', {
-    //   position: "bottom-left",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "light",
-    //   transition: Bounce,
-    //   });
-      
-      console.log(`Advert with ID ${advertsid} deleted successfully.`);
-      navigate(-1); 
-    } catch (error) {
-      console.log(error)
-      console.error("Error deleting advert:", error.message);
-    }
+    // Show confirmation prompt
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await apiDeleteProduct(advertsid);
+          console.log(`Advert with ID ${advertsid} deleted successfully.`);
+
+          // Show success message
+          Swal.fire(
+            'Deleted!',
+            'Your advert has been deleted.',
+            'success'
+          );
+
+          navigate(-1); // Navigate back after deletion
+        } catch (error) {
+          console.error("Error deleting advert:", error.message);
+
+          // Show error message
+          Swal.fire(
+            'Error!',
+            'There was a problem deleting your advert.',
+            'error'
+          );
+        }
+      }
+    });
   };
 
   useEffect(() => {
