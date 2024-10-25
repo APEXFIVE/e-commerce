@@ -10,13 +10,13 @@ export const apiGetSingleProduct = async (id) =>{
 };
 
 // edit advert
-export const apiEditproduct = async (id, payload) => {
+export const apiEditProduct = async (id, payload) => {
     return apiClient.patch(`/adverts/${id}`, payload)
 };
 
 
 
 // delete advert
-export const apiDeleteproduct = async (id) => {
+export const apiDeleteProduct = async (id) => {
     return apiClient.delete(`/adverts/${id}`)
 };

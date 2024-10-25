@@ -1,58 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { apiEditproduct, apiGetSingleProduct } from '../../services/product';
-
+import Swal from 'sweetalert2';
+// import { apiEditProduct, apiGetSingleProduct } from '../../services/product';
+import { apiEditProduct } from '../../services/product';
+import { apiGetSingleProduct } from '../../services/product';
 const EditAdvert = () => {
-
   const params = useParams();
   const [advert, setAdvert] = useState({});
-  const [image, setImage] = useState({})
+  const [image, setImage] = useState(null); 
   const navigate = useNavigate();
   const advertId = params.id;
 
-  console.log("Adverts ID from params:", advertId);
-
-
   const fetchAdvert = async () => {
     if (!advertId) {
-      console.error("Adverts ID is undefined");
+      console.error("Advert ID is undefined");
       return;
     }
 
     try {
       const response = await apiGetSingleProduct(advertId);
       setAdvert(response.data);
-      // toast.success
-      // navigate("/dashboard/adverts");
     } catch (error) {
       console.error("Error fetching advert:", error.message);
+      // Optionally, show a notification to the user
+      Swal.fire({
+        icon: 'error',
+        title: 'Error fetching advert',
+        text: 'Could not fetch advert details. Please try again later.',
+      });
     }
   };
 
   useEffect(() => {
     fetchAdvert();
-  }, []);
+  }, [advertId]); 
 
+  const editAdvert = async (e) => {
+    e.preventDefault();
 
-  const editAdvert = async () => {
-    if (!advertId) {
-      console.error("Adverts ID is undefined");
-      return;
+    const formData = new FormData();
+    formData.append('title', advert.title);
+    formData.append('description', advert.description);
+    formData.append('price', advert.price);
+    formData.append('category', advert.category);
+
+    if (image) {
+      formData.append('image', image); 
     }
 
     try {
-      const response = await apiEditproduct(advertId);
-      setAdvert(response.data);
-      toast.success
+      await apiEditProduct(advertId, formData);
+      Swal.fire({
+        icon: 'success',
+        title: 'Advert updated!',
+        text: 'The advert has been successfully updated.',
+      });
       navigate("/dashboard/adverts");
     } catch (error) {
-      console.error("Error fetching advert:", error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error updating advert',
+        text: error.response ? error.response.data.message : 'There was a problem updating the advert.',
+      });
+      console.error("Error updating advert:", error.message);
     }
   };
 
+ 
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    setImage(e.target.files[0]); 
   };
 
   return (
@@ -67,7 +84,8 @@ const EditAdvert = () => {
             <input
               type="text"
               id="title"
-              defaultValue={advert.title}
+              defaultValue={advert.title || ""}
+              
               placeholder="Enter advert title"
               required
               className="form-input"
@@ -78,7 +96,8 @@ const EditAdvert = () => {
             <label htmlFor="description" className="form-label">Description</label>
             <textarea
               id="description"
-              defaultValue={advert.description}
+              defaultValue={advert.description || ""}
+              
               placeholder="Enter advert description"
               required
               className="form-input textarea"
@@ -90,7 +109,8 @@ const EditAdvert = () => {
             <input
               type="number"
               id="price"
-              defaultValue={advert.price}
+              defaultValue={advert.price || ""}
+           
               placeholder="Enter price"
               required
               className="form-input"
@@ -101,7 +121,8 @@ const EditAdvert = () => {
             <label htmlFor="category" className="form-label">Category</label>
             <select
               id="category"
-              defaultValue={advert.category}
+              defaultValue={advert.category || ""}
+             
               required
               className="form-input"
             >
@@ -132,8 +153,6 @@ const EditAdvert = () => {
       </div>
     </div>
   );
-
 };
-
 
 export default EditAdvert;

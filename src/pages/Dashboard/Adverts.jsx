@@ -31,7 +31,7 @@ const Adverts = () => {
             <div className="p-4">
               <h2 className="font-bold text-xl mb-2 text-gray-800">{advert.title}</h2>
               <p className="text-gray-600 text-[20px] mb-2 truncate">{advert.description}</p>
-              <p className="text-gray-500 text-xs">
+              <p className="text-gray-500 text-xl">
                 {advert?.category?.name || advert?.category || "No category"}
               </p>
               <p className="text-gray-900 text-lg font-bold mt-2">${advert.price}</p>
