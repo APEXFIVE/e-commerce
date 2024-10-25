@@ -6,9 +6,10 @@ import { SiGooglemybusiness } from "react-icons/si";
 import { apiSignup } from '../../services/auth';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Swal from 'sweetalert2'; // Import SweetAlert
+import Swal from 'sweetalert2'; 
 import { Link } from 'react-router-dom';
 import { FaCreditCard } from 'react-icons/fa6';
+
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Register = () => {
     <div className='w-full min-h-screen flex items-center justify-center bg-gray-50'>
       <div className='w-[50%] bg-white shadow-lg rounded-lg p-10'>
         <div className='text-center mb-8'>
-          <h1 className='text-2xl font-semibold text-gray-800'>Sign Up</h1>
+          <h1 className='text-2xl font-semibold text-[#ff4061]'>Sign Up</h1>
           <p className='text-gray-500'>Don't have an Account? Create one!</p>
         </div>
 
@@ -182,17 +183,22 @@ const Register = () => {
                 placeholder='Enter your password'
                 required />
             </div>
-          </div>
-
-          <div>
+            </div>
             <button
               type="Submit"
 
-              className="w-full bg-pink-600 text-white py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600 font-bold text-xl"
-            >{loading ? "Loading..." : "Sign Up"}
-      </div>
-    </div>
-  );
-};
+              className="w-full bg-[#392d48] hover:bg-[#ff4061] text-white py-2 px-4 rounded-lg  focus:outline-none font-bold text-xl">
+              {loading ? "Loading..." : "Sign Up"}
+            </button>
+            </form>
+          </div>
 
-export default Register;
+          <div>
+           
+
+          </div>
+      </div>
+      );
+    };
+
+  export default Register;

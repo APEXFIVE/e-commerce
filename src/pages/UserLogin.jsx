@@ -89,7 +89,7 @@ const UserLogin = () => {
         <div className="mt-6 text-center text-sm">
           <span className="text-gray-500">Don't have an account?</span>{' '}
           <a href="#" className="font-medium text-[#392d48] hover:text-[#ff4061]">
-           <Link to= '/register'>Sign up</Link> 
+           <Link to= '/display'>Sign up</Link> 
           </a>
         </div>
       </div>

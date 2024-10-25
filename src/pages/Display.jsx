@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL, 
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 function Display() {
@@ -23,7 +23,6 @@ function Display() {
     try {
       setError(null);
       const { data } = await api.get('/adverts', {
-        // params: { limit: 0 },
       });
       setAdverts(data);
       setFilteredResults(data);
@@ -40,7 +39,7 @@ function Display() {
     fetchAdverts();
   }, []);
 
- 
+
   const handleSearch = () => {
     setHasSearched(true);
     const results = adverts.filter((advert) => {
@@ -147,93 +146,93 @@ function Display() {
   );
 
   return (
-   <div>
-    <Navbar />
-     <div className="flex">
-      <div className="w-1/4 bg-gray-100 p-6 rounded-lg shadow-lg space-y-4">
-        <h2 className="text-xl font-bold mb-4 text-gray-800">Filter Adverts</h2>
+    <div>
+      <Navbar />
+      <div className="flex">
+        <div className="w-1/4 bg-gray-100 p-6 rounded-lg shadow-lg space-y-4">
+          <h2 className="text-xl font-bold mb-4 text-gray-800">Filter Adverts</h2>
 
-        <input
-          type="text"
-          placeholder="Search adverts..."
-          className="w-full p-2 border rounded-lg"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder="Search adverts..."
+            className="w-full p-2 border rounded-lg"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
 
-        <select
-          className="w-full p-2 border rounded-lg"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="">All Categories</option>
-          <option value="Catering">Catering</option>
-          <option value="Decoration">Decoration</option>
-          <option value="Accessories">Accessories</option>
-          <option value="Closet">Closet</option>
-          <option value="Invitation">Invitation</option>
-          <option value="Photography">Photography</option>
-        </select>
-
-        <input
-          type="number"
-          placeholder="Max Price"
-          className="w-full p-2 border rounded-lg"
-          value={priceRange}
-          onChange={(e) => setPriceRange(e.target.value)}
-        />
-
-        <div className="flex justify-between">
-          <button
-            onClick={handleSearch}
-            className="w-full p-2 bg-[#ff4061] text-white hover:bg-[#392d48] focus:outline-none rounded-lg"
+          <select
+            className="w-full p-2 border rounded-lg"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
           >
-            Search
-          </button>
+            <option value="">All Categories</option>
+            <option value="Catering">Catering</option>
+            <option value="Decoration">Decoration</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Closet">Closet</option>
+            <option value="Invitation">Invitation</option>
+            <option value="Photography">Photography</option>
+          </select>
 
-          {(searchTerm || category || priceRange) && (
-            <button
-              onClick={resetSearch}
-              className="ml-2 p-2 bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none rounded-lg"
-            >
-              Reset
-            </button>
-          )}
-        </div>
-      </div>
+          <input
+            type="number"
+            placeholder="Max Price"
+            className="w-full p-2 border rounded-lg"
+            value={priceRange}
+            onChange={(e) => setPriceRange(e.target.value)}
+          />
 
-      <div className="flex-1 p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Adverts Display</h1>
-          <div className="flex items-center space-x-2">
+          <div className="flex justify-between">
             <button
-              onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-[#392d48] text-white' : 'bg-gray-200 text-gray-600'}`}
+              onClick={handleSearch}
+              className="w-full p-2 bg-[#ff4061] text-white hover:bg-[#392d48] focus:outline-none rounded-lg"
             >
-              <LayoutGrid size={20} />
+              Search
             </button>
-            <button
-              onClick={() => setViewMode('list')}
-              className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-[#ff4061] text-white' : 'bg-gray-200 text-gray-600'}`}
-            >
-              <LayoutList size={20} />
-            </button>
+
+            {(searchTerm || category || priceRange) && (
+              <button
+                onClick={resetSearch}
+                className="ml-2 p-2 bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none rounded-lg"
+              >
+                Reset
+              </button>
+            )}
           </div>
         </div>
 
-        {error ? (
-          <EmptyState />
-        ) : filteredResults.length === 0 ? (
-          <EmptyState />
-        ) : viewMode === 'grid' ? (
-          <GridView />
-        ) : (
-          <ListView />
-        )}
+        <div className="flex-1 p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-3xl font-bold text-gray-800">Adverts Display</h1>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-[#392d48] text-white' : 'bg-gray-200 text-gray-600'}`}
+              >
+                <LayoutGrid size={20} />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-[#ff4061] text-white' : 'bg-gray-200 text-gray-600'}`}
+              >
+                <LayoutList size={20} />
+              </button>
+            </div>
+          </div>
+
+          {error ? (
+            <EmptyState />
+          ) : filteredResults.length === 0 ? (
+            <EmptyState />
+          ) : viewMode === 'grid' ? (
+            <GridView />
+          ) : (
+            <ListView />
+          )}
+        </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
-   </div>
   );
 }
 
