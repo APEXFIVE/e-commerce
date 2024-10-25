@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MdAttachEmail } from "react-icons/md";
 import { FaLock } from 'react-icons/fa6';
 import { apiLogin } from '../../services/auth';
+import Swal from 'sweetalert2'; // Import SweetAlert
 import axios from 'axios'; // Import Axios
 
 const Login = () => {
@@ -21,11 +22,25 @@ const Login = () => {
       
       if(response.status === 200) {
         localStorage.setItem("token", response.data.accessToken);
+        
+        // SweetAlert for successful login
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful',
+          text: 'You have logged in successfully!',
+        });
+
         navigate('/dashboard'); 
       }
     } catch (error) {
       console.error("Login failed:", error);
-    
+      
+      // SweetAlert for login failure
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed',
+        text: 'Incorrect email or password. Please try again.',
+      });
     }
   };
 
