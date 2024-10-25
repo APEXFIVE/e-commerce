@@ -33,17 +33,17 @@ const Login = () => {
     <div className='w-full min-h-screen flex items-center justify-center loginpage'>
       <div className='w-[32%] h-auto py-10 px-12 rounded-xl logincard'>
         <div className='w-full h-auto'>
-          <h1 className='text-[1.475rem] text-black font-semibold mb-1'>Sign In</h1>
+          <h1 className='text-[1.475rem] text-[#ff4061] font-semibold mb-1'>Sign In</h1>
           <p className='text-sm text-gray-400 font-normal mb-8'>Welcome back You've been missed!</p>
         </div>
         <div className='w-full h-auto flex items-center gap-7'>
           <div className='w-1/2 h-auto flex gap-4'>
-            <button className='w-[200px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-black rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
-              <FcGoogle size={30} /> Google
+            <button className='w-[200px] h-10 p-2 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-[#392d48] rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-xl '>
+              <FcGoogle size={20} /> Google
             </button>
 
-            <button className='w-[250px] h-12 p-4 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-black rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-2xl '>
-              <FaSquareFacebook size={30} className=' text-blue-700' /> Facebook
+            <button className='w-[250px] h-10 p-2 outline-none bg-transparent border-[2px] border-b-gray-200/40 justify-center text-[#392d48] rounded-md flex items-center gap-x-2 hover:bg-gray-100/40 ease-out duration-700 text-xl '>
+              <FaSquareFacebook size={20} className=' text-blue-700' /> Facebook
             </button>
           </div>
         </div>
@@ -91,14 +91,14 @@ const Login = () => {
               <label htmlFor="remember" className='text-[0.875rem] text-black'>Remember me </label>
             </div>
             <div className='w-auto h-auto '>
-              <Link className='text-black text-sm font-medium hover:underline ease-out duration-500'>Forgot Password?</Link>
+              <Link className='text-[#ff4061] text-sm font-medium hover:underline ease-out duration-500'>Forgot Password?</Link>
             </div>
           </div>
 
           <div>
             <button
               type="submit"
-              className="w-full bg-pink-600 text-black py-2 px-4 rounded-lg hover:bg-black-600 focus:outline-none focus:bg-black-600"
+              className="w-full bg-[#392d48] hover:bg-[#ff4061] text-black py-2 px-4 rounded-lg  focus:outline-none"
             >
               Sign in
             </button>

@@ -11,6 +11,8 @@ import image2 from "../../assets/images/decor.jpg"
 import image3 from "../../assets/images/access.jpg"
 import image4 from "../../assets/images/closet.jpg"
 import image5 from "../../assets/images/wedlist2.jpg"
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
 
 
@@ -19,6 +21,7 @@ const List = () => {
 
     return (
         <div>
+            {/* <Navbar /> */}
             <div className='text-center pt-10'>
             <h1 className="text-3xl font-bold text-[#392d48] pb-3">Start Planning Your Wedding Step By Step</h1>
             <p>Let us handle your wedding from start to finish. Stress no more</p>
@@ -62,6 +65,7 @@ const List = () => {
             </div>
 
            </div>
+           {/* <Footer /> */}
         </div>
     )
 };

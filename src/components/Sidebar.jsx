@@ -17,7 +17,7 @@ const Sidebar = ({ isCollapsed }) => {
   };
   return (
     <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-      <h2 className={`sidebar-title ${isCollapsed ? 'hidden' : ''}`}>Vendor Dashboard</h2>
+      <h2 className= {`sidebar-title ${isCollapsed ? 'hidden' : ''}`}>Welcome</h2>
       <ul>
         <li><Link to="/dashboard/profile"> <CgProfile /> <span className={isCollapsed ? 'hidden' : ''}>Profile</span></Link></li>
         <li><Link to="/dashboard"> <GrOverview /> <span className={isCollapsed ? 'hidden' : ''}>Overview</span></Link></li>

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { apiGetSingleProduct } from "../services/product";
+import Navbar from "../components/Navbar";
 
 const AdDetail = () => {
   const params = useParams();
@@ -26,20 +27,7 @@ const AdDetail = () => {
     }
   };
 
-  const handleDeleteAdvert = async (advertsid) => {
-    if (!advertsid) {
-      console.error("Adverts ID is undefined");
-      return;
-    }
-
-    try {
-      await apiDeleteproduct(advertsid);
-      console.log(`Advert with ID ${advertsid} deleted successfully.`);
-      navigate(-1); 
-    } catch (error) {
-      console.error("Error deleting advert:", error.message);
-    }
-  };
+  
 
   useEffect(() => {
     fetchAdvert();
@@ -50,7 +38,9 @@ const AdDetail = () => {
   }
 
   return (
-    <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 mt-9">
+   <div>
+    <Navbar />
+     <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 mt-9">
       {adverts.image && (
         <img
           src={`https://savefiles.org/${adverts.image}?shareable_link=447`}
@@ -69,6 +59,8 @@ const AdDetail = () => {
         </button>
       </div>
     </div>
+    <Footer />
+   </div>
   );
 };
 

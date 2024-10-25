@@ -67,7 +67,7 @@ function App() {
       element: <Plan/>,
     },
     {
-      path: "/detail",
+      path: "/detail/:id",
       element: <AdDetail/>,
     },
 

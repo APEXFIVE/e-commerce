@@ -106,7 +106,7 @@ const Register = () => {
                 name='businessName'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
            rounded-md'
-                placeholder='Enter your Last Name'
+                placeholder='Your Business Name'
                 required />
             </div>
             <div>
@@ -116,7 +116,7 @@ const Register = () => {
                 name='product'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
            rounded-md'
-                placeholder='Enter your Last Name'
+                placeholder='Product Name'
                 required />
             </div>
             <div className="form-group">
@@ -156,7 +156,7 @@ const Register = () => {
                 name='contactNumber'
                 className='w-full h-12 p-4 outline-none bg-transparent border-[2px] border-gray-gray-200/40 text-black 
            rounded-md'
-                placeholder='Enter your Last Name'
+                placeholder='Your Contact'
                 required />
             </div>
 

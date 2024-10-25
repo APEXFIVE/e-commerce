@@ -24,9 +24,12 @@ body {
 }
 
 .sidebar-title {
-  font-size: 24px; 
+  font-size: 34px; 
   margin-bottom: 20px;
-  color: #aa9a66; 
+  color: white; 
+  font-weight: bolder;
+  font-family: serif;
+  font-style: oblique;
 }
 
 .sidebar ul {
@@ -85,16 +88,17 @@ body {
   justify-content: space-between; 
   align-items: center; 
   background-color: rgb(252, 251, 249);
-  color: #ff4061; 
+  color: #392d48; 
   padding: 10px 20px; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
   
 }
 
 .toggle-button {
   background: transparent; 
   border: none;
-  color: #7D8C9C; 
+  color: #392d48; 
   cursor: pointer; 
   font-size: 20px; 
 }
@@ -125,7 +129,7 @@ body {
 
 .card {
   background-color: white; 
-  color: #7D8C9C; 
+  color: #ff4061; 
   padding: 20px; 
   border-radius: 8px; 
   flex: 1; 
@@ -298,9 +302,10 @@ body {
 }
 
 .loginpage{
-  background: url("./assets/images/image1.jpg") no-repeat;
-  background-position: center center;
+  background-image: url(./assets/images/form.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .logincard{

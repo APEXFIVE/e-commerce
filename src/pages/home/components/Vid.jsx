@@ -5,10 +5,14 @@ import React from 'react';
 import image from "../../../assets/images/wedlist2.jpg"
 import image1 from "../../../assets/images/hero-7.png"
 import image2 from "../../../assets/images/best.png"
+import Navbar from '../../../components/Navbar';
+import Footer from '../../../components/Footer';
 
 const Vid = () => {
     return (
-        <section className="video-section">
+      <div>
+        {/* <Navbar /> */}
+          <section className="video-section">
             <h2 className="video-title">Our Best Featured Wedding</h2>
             <div className="video-container">
                 <video controls autoPlay loop muted width="100%" height="480">
@@ -23,7 +27,7 @@ const Vid = () => {
                 </div>
                 <div>
                 <img className="w-full h-48 object-cover" src={image1} alt="image" />
-                <h1 className="text-xl font-bold text-[#ff4061] text-center mt-5">Jac&Sunday@22</h1>
+                <h1 className="text-xl font-bold text-[#ff4061] text-center mt-5">Godwin&Rose@22</h1>
                 </div>
                 <div>
                 <img className="w-full h-48 object-cover" src={image2} alt="image" />
@@ -32,6 +36,8 @@ const Vid = () => {
                
             </div>
         </section>
+        {/* <Footer /> */}
+      </div>
     );
 };
 
